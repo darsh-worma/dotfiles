@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+#
+# JankyBorders — pairs with the SIP-enabled yabai setup in ../yabai/yabairc.
+# Colors match the Nord palette used across the rest of these dotfiles.
+#
+# borders has no per-window or stacked-window coloring: it draws one color for
+# the focused window and one for everything else. See `man borders`.
+
+borders \
+  style=round \
+  width=5.0 \
+  hidpi=off \
+  active_color=0xff88c0d0 \
+  inactive_color=0xff454f63
+
+# Deliberately NOT setting ax_focus=on. It improves compatibility with yabai,
+# but borders exits immediately if the flag is set without accessibility
+# permission — and it turns itself on automatically once the process HAS that
+# permission. So granting the permission is the whole job; the flag is not.

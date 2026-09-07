@@ -1,0 +1,9 @@
+# Copy to ~/.config/git/config.local and fill in your own details.
+# This file is gitignored so your identity never lands in the repo.
+[user]
+	name = Your Name
+	email = you@example.com
+	# For SSH commit signing; omit this and gpgsign below if you do not sign.
+	signingkey = ~/.ssh/id_ed25519
+[commit]
+	gpgsign = true

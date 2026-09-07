@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+#
+# yabai config — written for SIP ENABLED (no scripting addition).
+# Everything below works without `yabai --load-sa`.
+# Items that need SIP partially disabled are listed at the bottom, commented out.
+
+# ── layout ────────────────────────────────────────────────────────────────
+yabai -m config layout                      bsp
+yabai -m config window_placement            second_child
+yabai -m config split_ratio                 0.50
+yabai -m config auto_balance                off
+
+# ── gaps & padding ────────────────────────────────────────────────────────
+yabai -m config top_padding                 8
+yabai -m config bottom_padding              8
+yabai -m config left_padding                8
+yabai -m config right_padding               8
+yabai -m config window_gap                  8
+
+# ── focus & mouse ─────────────────────────────────────────────────────────
+yabai -m config mouse_follows_focus         off
+yabai -m config focus_follows_mouse         off
+yabai -m config mouse_modifier              alt
+yabai -m config mouse_action1               move      # alt + left-drag
+yabai -m config mouse_action2               resize    # alt + right-drag
+yabai -m config mouse_drop_action           swap
+
+# ── rules: apps that should never be tiled ────────────────────────────────
+yabai -m rule --add app="^(System Settings|Calculator|Dictionary|Software Update|Activity Monitor|Archive Utility|App Store|Karabiner-Elements|Raycast|Alfred)$" manage=off
+yabai -m rule --add app="^System Information$" title="About This Mac"                  manage=off
+yabai -m rule --add app="^Finder$"  title="(Copy|Connect|Move|Info|Settings)"          manage=off
+yabai -m rule --add app="^Safari$"  title="^(General|Tabs|Passwords|Websites|Extensions|AutoFill|Search|Security|Privacy|Advanced)$" manage=off
+yabai -m rule --add title="^(Preferences|Settings)$"                                   manage=off
+
+# ── if you run sketchybar, uncomment to reserve space for the bar ─────────
+# yabai -m config external_bar all:40:0
+
+# ── REQUIRES SIP PARTIALLY DISABLED — do not uncomment until then ─────────
+# These silently fail (or error) with SIP on. See the notes in skhdrc.
+# yabai -m config window_shadow              float
+# yabai -m config window_opacity             on
+# yabai -m config active_window_opacity      1.00
+# yabai -m config normal_window_opacity      0.90
+# yabai -m config window_animation_duration  0.20
+#
+# sudo yabai --load-sa
+# yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+
+echo "yabai configuration loaded (SIP enabled / no scripting addition)"

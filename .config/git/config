@@ -1,0 +1,15 @@
+# Shared settings. Identity lives in config.local, which is untracked --
+# see config.local.example. Without it, git will refuse to commit rather
+# than attribute commits to whoever last owned this repo.
+[include]
+	path = ~/.config/git/config.local
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gpg]
+	format = ssh
+[init]
+	defaultBranch = main

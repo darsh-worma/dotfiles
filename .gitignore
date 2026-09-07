@@ -1,0 +1,8 @@
+old/
+.DS_Store
+.config/nvim/lazy-lock.json
+.ssh
+.config/nvim/lua/.luarc.json
+*.un~
+*.swp
+.config/git/config.local
