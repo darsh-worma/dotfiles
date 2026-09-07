@@ -11,10 +11,14 @@
 # "Switch to Desktop N" (bind them to ctrl - 1..5).
 
 # ── focus window (falls through to the display in that direction) ─────────
-alt - h : yabai -m window --focus west  || yabai -m display --focus west
-alt - j : yabai -m window --focus south || yabai -m display --focus south
-alt - k : yabai -m window --focus north || yabai -m display --focus north
-alt - l : yabai -m window --focus east  || yabai -m display --focus east
+# DISABLED: these collided with zellij, which binds Alt h/j/k/l (pane focus),
+# Alt n (new pane) and Alt f (floating panes). skhd grabs hotkeys with a global
+# event tap, so it swallowed them before Ghostty/zellij ever saw the keypress.
+# shift+alt and ctrl+alt binds below are unaffected and still work everywhere.
+# alt - h : yabai -m window --focus west  || yabai -m display --focus west
+# alt - j : yabai -m window --focus south || yabai -m display --focus south
+# alt - k : yabai -m window --focus north || yabai -m display --focus north
+# alt - l : yabai -m window --focus east  || yabai -m display --focus east
 
 alt - g    : yabai -m window --focus first
 alt - 0x29 : yabai -m window --focus last     # 0x29 is the ';' key
@@ -47,11 +51,11 @@ ctrl + alt - e : yabai -m space --balance
 
 # ── float / fullscreen ────────────────────────────────────────────────────
 shift + alt - space : yabai -m window --toggle float && yabai -m window --grid 6:6:1:1:4:4
-alt - f             : yabai -m window --toggle zoom-parent
+# alt - f             : yabai -m window --toggle zoom-parent
 shift + alt - f     : yabai -m window --toggle zoom-fullscreen
 
 # ── splits & layout ───────────────────────────────────────────────────────
-alt - e : yabai -m window --toggle split
+# alt - e : yabai -m window --toggle split
 
 ctrl + alt - r : yabai -m space --rotate 270
 ctrl + alt - x : yabai -m space --mirror x-axis
@@ -70,7 +74,7 @@ ctrl + alt - s  : yabai -m window --stack west || yabai -m window --stack prev
 # `next`/`prev` walk yabai's BSP tree, which can drift out of sync with macOS on
 # a SIP-enabled setup (windows moved between spaces without the scripting
 # addition). `recent` uses focus history, so it resolves even then.
-alt - n         : yabai -m window --focus stack.next  || yabai -m window --focus next || yabai -m window --focus recent
+# alt - n         : yabai -m window --focus stack.next  || yabai -m window --focus next || yabai -m window --focus recent
 shift + alt - n : yabai -m window --focus stack.prev  || yabai -m window --focus prev || yabai -m window --focus recent
 
 # straight alt-tab between the two most recently focused windows
